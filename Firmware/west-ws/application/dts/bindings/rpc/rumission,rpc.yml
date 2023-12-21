@@ -1,0 +1,14 @@
+description: |
+  The RPC device is a device that allows to send and receive RPC messages
+  over a serial interface.
+
+compatible: "rumission,rpc"
+
+include:
+  - base.yaml
+
+properties:
+  bus_id:
+    type: int
+    description: |
+      The ID of this RPC device.

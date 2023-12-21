@@ -1,0 +1,33 @@
+/ {
+	parent {
+		#address-cells = < 1 >;
+		#size-cells = <0>;
+
+		uart_socket_1: uart_socket@1e61 {
+		
+			compatible = "rumission,uart-socket";
+			status = "okay";
+			reg = <7777>;
+			irqn=<3>;
+	
+			pam: pam {
+				compatible = "twobtech,pam";
+				status = "okay";
+			};
+		};
+	
+		uart_socket_2: uart_socket@1e62 {
+	
+			compatible = "rumission,uart-socket";
+			status = "okay";
+			reg = <7778>;
+			irqn=<4>;
+	
+			flow: pam {
+				compatible = "twobtech,pam";
+				status = "okay";
+			};
+		};
+	};
+};
+

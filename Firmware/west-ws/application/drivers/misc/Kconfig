@@ -1,0 +1,2 @@
+rsource "lmp91000/Kconfig"
+rsource "pam/Kconfig"

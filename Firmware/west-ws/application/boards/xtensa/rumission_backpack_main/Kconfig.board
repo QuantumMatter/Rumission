@@ -1,0 +1,10 @@
+# Copyright (c) 2023 Espressif Systems (Shanghai) Co., Ltd.
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_RUMISSION_BACKPACK_MAIN
+	bool "Rumission Backpack - Main Board"
+	depends on SOC_SERIES_ESP32
+
+choice SOC_PART_NUMBER
+	default SOC_ESP32_WROVER_E_N8R8
+endchoice

@@ -1,0 +1,10 @@
+Location.name max_size:32;
+// Sample.location max_count:1;
+// Record.samples max_count:4;
+
+Sample.location type:FT_POINTER;
+Record.samples type:FT_POINTER;
+
+Species long_names:false;
+Units long_names:false;
+LocationType long_names:false;

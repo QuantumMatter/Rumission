@@ -1,0 +1,27 @@
+config RPC_LIB
+    bool "RPC Support"
+    
+
+config RPC_TARGET_COUNT
+    int "Maximum number of RPC clients/servers"
+    depends on RPC_LIB
+    default 4
+    help
+      This option sets the maximum number of RPC clients and servers
+      that can be registered at any one time.
+
+config RPC_CONCURRENT_REQUESTS
+    int "Maximum number of concurrent RPC requests"
+    depends on RPC_LIB
+    default 4
+    help
+      This option sets the maximum number of concurrent RPC requests
+      that can be handled at any one time. Maximum is 32
+
+config RPC_FUNCTION_COUNT
+    int "Maximum number of RPC functions"
+    depends on RPC_LIB
+    default 8
+    help
+      This option sets the maximum number of RPC functions that can
+      be registered at any one time.

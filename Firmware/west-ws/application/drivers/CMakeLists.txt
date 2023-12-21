@@ -1,0 +1,7 @@
+zephyr_library_named(rumission_drivers)
+add_dependencies(rumission_drivers rumission_protos)
+
+add_subdirectory(misc)
+add_subdirectory_ifdef(CONFIG_SENSOR sensor)
+add_subdirectory_ifdef(CONFIG_SERIAL serial)
+add_subdirectory_ifdef(CONFIG_RPC rpc)

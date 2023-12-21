@@ -1,0 +1,17 @@
+/ {
+	uart_parent {
+		#address-cells = < 1 >;
+		#size-cells = < 0 >;
+
+		uart_socket: uart_socket@1e62 {
+			compatible = "rumission,uart-socket";
+			status = "okay";
+			reg = <7778>;
+			irqn=<3>;
+		};
+	};
+
+	chosen {
+		zephyr,shell-uart = &uart_socket;
+	};
+};

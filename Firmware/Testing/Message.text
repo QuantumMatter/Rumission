@@ -1,0 +1,26 @@
+version: 1
+
+m_id: 1
+rpc_id: 100
+target: 0
+source: 3
+
+request: {
+    func: FUNC_POST_RECORD
+
+    args: {
+        record: {
+            timestamp_us: 1234567980
+            samples: [
+                {
+                    species: SPECIE_TEMPERATURE
+                    value: 27.23
+                    units: UNIT_CELSIUS
+                }
+            ]
+        }
+    }
+
+}
+
+checksum: 100

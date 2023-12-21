@@ -1,0 +1,6 @@
+config PAM
+    bool "PAM"
+    default y
+    depends on DT_HAS_TWOBTECH_PAM_ENABLED
+    help
+        Enable interface to 2B's PAM

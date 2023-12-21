@@ -1,0 +1,263 @@
+/*
+ * Copyright (c) 2023 Espressif Systems (Shanghai) Co., Ltd.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/dts-v1/;
+
+#include <espressif/esp32/esp32_wrover_e_n8r8.dtsi>
+#include "rumission_backpack_main-pinctrl.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+/ {
+	model = "Rumission Backpack - Main Board";
+	compatible = "rumission,backpack-main-v1";
+
+	aliases {
+		uart-0 = &uart0;
+		i2c-0 = &i2c0;
+		sw0 = &button0;
+		watchdog0 = &wdt0;
+	};
+
+	buttons {
+		compatible = "gpio-keys";
+		button0: button_0 {
+			gpios = <&gpio0 0 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "BOOT Button";
+			zephyr,code = <INPUT_KEY_0>;
+		};
+	};
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+		zephyr,flash = &flash0;
+		axetris,axetris = &uart1;
+	};
+
+	rpc: rpc {
+		status = "okay";
+		compatible = "rumission,rpc";
+		
+		bus_id = <0>;
+
+		#address-cells = < 1 >;
+		#size-cells = < 0 >;
+
+		flow: rpc_target@3 {
+			status = "okay";
+			compatible = "rumission,flow-meter";
+			reg = <3>;
+			hw = <&i2c_rpc>;
+		};
+
+		pam: rpc_target@2 {
+			status = "okay";
+			compatible = "twobtech,pam";
+			reg = <2>;
+			hw = <&uart_rpc>;
+		};
+	};
+};
+
+&cpu0 {
+	clock-frequency = <ESP32_CLK_CPU_240M>;
+};
+
+&cpu1 {
+	clock-frequency = <ESP32_CLK_CPU_240M>;
+};
+
+&uart0 {
+	status = "okay";
+	current-speed = <115200>;
+	pinctrl-0 = <&uart0_default>;
+	pinctrl-names = "default";
+};
+
+&uart1 {
+	status = "okay";
+	current-speed = <9600>;
+	pinctrl-0 = <&uart1_default>;
+	pinctrl-names = "default";
+
+	axetris: axetris {
+		compatible = "axetris,axetris";
+		input-gpios = <&gpio1 39 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+	};
+};
+
+&uart2 {
+	status = "okay";
+	current-speed = <115200>;
+	pinctrl-0 = <&uart2_default>;
+	pinctrl-names = "default";
+
+	uart_rpc: uart_rpc {
+		status = "okay";
+		compatible = "rumission,uart-rpc";
+		rpc = <&rpc>;
+	};
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+&i2c0 {
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_STANDARD>;
+	sda-gpios = <&gpio0 23 GPIO_OPEN_DRAIN>;
+	scl-gpios = <&gpio0 22 GPIO_OPEN_DRAIN>;
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-names = "default";
+
+	asdf: ads1115@49 {
+		status = "okay";
+		compatible = "ti,ads1115";
+		reg = < 0x49 >;
+		#io-channel-cells = <1>;
+	};
+
+	lmp_afe: lmp91000@48 {
+		status = "okay";
+		compatible = "ti,lmp91000";
+		reg = <0x48>;
+	};
+
+	ina: ina219@47 {
+		status = "okay";
+		compatible = "ti,ina219";
+		reg = <0x47>;
+		brng = < 0 >; 	// Bus Range Voltage = 16 V
+		pg = < 0 >;		// Programmable Gain = 1; +- 40 mV (expecting 5 mV right now)
+		sadc = < 13 >;	// 12 bit - 32 sample averaging -> 17.02 ms
+		badc = < 13 >;	// 12 bit - 32 sample averaging -> 17.02 ms
+		shunt-milliohm = < 50 >;
+		lsb-microamp = < 3 >;	// 100 mA
+	};
+
+	hih: hih8xxx@27 {
+		status = "okay";
+		compatible = "honeywell,hih8xxx";
+		reg = <0x27>;
+	};
+
+	i2c_rpc: i2c_rpc@11 {
+		status = "okay";
+		compatible = "rumission,i2c-rpc";
+		reg = <0x11>;
+		rpc = <&rpc>;
+	};
+};
+
+// &i2c1 {
+// 	status = "okay";
+// 	clock-frequency = <I2C_BITRATE_STANDARD>;
+// 	sda-gpios = <&gpio0 18 GPIO_OPEN_DRAIN>;
+// 	scl-gpios = <&gpio0 19 GPIO_OPEN_DRAIN>;
+// 	pinctrl-0 = <&i2c1_default>;
+// 	pinctrl-names = "default";
+
+// 	eeprom0: eeprom@54 {
+// 		compatible = "zephyr,i2c-target-eeprom";
+// 		reg = <0x54>;
+// 		size = <1024>;
+// 	};
+// };
+
+// &spi2 {
+// 	#address-cells = <1>;
+// 	#size-cells = <0>;
+// 	status = "okay";
+// 	pinctrl-0 = <&spim2_default>;
+// 	pinctrl-names = "default";
+// };
+
+// &spi3 {
+// 	#address-cells = <1>;
+// 	#size-cells = <0>;
+// 	status = "okay";
+// 	pinctrl-0 = <&spim3_default>;
+// 	pinctrl-names = "default";
+// };
+
+&timer0 {
+	status = "disabled";
+};
+
+&timer1 {
+	status = "disabled";
+};
+
+&timer2 {
+	status = "disabled";
+};
+
+&timer3 {
+	status = "disabled";
+};
+
+&trng0 {
+	status = "okay";
+};
+
+&flash0 {
+	status = "okay";
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		/* Reserve 60kB for the bootloader */
+		boot_partition: partition@1000 {
+			label = "mcuboot";
+			reg = <0x00001000 0x0000F000>;
+			read-only;
+		};
+
+		/* Reserve 1024kB for the application in slot 0 */
+		slot0_partition: partition@10000 {
+			label = "image-0";
+			reg = <0x00010000 0x00100000>;
+		};
+
+		/* Reserve 1024kB for the application in slot 1 */
+		slot1_partition: partition@110000 {
+			label = "image-1";
+			reg = <0x00110000 0x00100000>;
+		};
+
+		/* Reserve 256kB for the scratch partition */
+		scratch_partition: partition@210000 {
+			   label = "image-scratch";
+			   reg = <0x00210000 0x00040000>;
+		};
+
+		storage_partition: partition@250000 {
+			label = "storage";
+			reg = <0x00250000 0x00006000>;
+		};
+	};
+};
+
+&ledc0 {
+	status = "okay";
+	pinctrl-0 = <&ledc0_default>;
+	pinctrl-names = "default";
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	channel@0 {
+		reg = < 0 >;
+		timer = < 0 >;
+	};
+};
+

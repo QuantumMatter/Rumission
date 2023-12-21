@@ -1,0 +1,9 @@
+config RPC
+    bool "RPC"
+    default y
+    help
+        Enables RPC support
+
+rsource "rpc/Kconfig"
+rsource "i2c_rpc/Kconfig"
+rsource "uart_rpc/Kconfig"

@@ -1,0 +1,9 @@
+config UART_SOCKET
+    bool "UART_SOCKET"
+    default y
+    depends on DT_HAS_RUMISSION_UART_SOCKET_ENABLED
+	select SERIAL_HAS_DRIVER
+	imply SERIAL_SUPPORT_INTERRUPT
+	imply UART_INTERRUPT_DRIVEN
+    help
+        Emulated UART interface backed by a Unix Socket

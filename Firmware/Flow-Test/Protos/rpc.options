@@ -1,0 +1,4 @@
+Error.message max_size:128;
+Request descriptorsize:DS_4;
+
+FUNCTION long_names:false;

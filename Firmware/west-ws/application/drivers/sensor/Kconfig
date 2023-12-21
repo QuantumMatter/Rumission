@@ -1,0 +1,3 @@
+rsource "axetris/Kconfig"
+rsource "hih8xxx/Kconfig"
+rsource "flow/Kconfig"

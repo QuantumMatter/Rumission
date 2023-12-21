@@ -1,0 +1,3 @@
+add_subdirectory_ifdef(CONFIG_AXETRIS axetris)
+add_subdirectory_ifdef(CONFIG_HIH8XXX hih8xxx)
+add_subdirectory_ifdef(CONFIG_FLOW_METER flow)

@@ -1,0 +1,3 @@
+axetris	Axetris
+twobtech	2B-Technologies
+rumission	Rumission

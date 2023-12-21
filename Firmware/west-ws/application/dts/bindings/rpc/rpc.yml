@@ -1,0 +1,5 @@
+properties:
+  hw:
+    type: phandle
+    description: |
+      The node that handles the device's I/O.

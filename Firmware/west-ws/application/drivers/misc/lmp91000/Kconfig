@@ -1,0 +1,6 @@
+config LMP91000
+    bool "LMP91000"
+    default y
+    depends on DT_HAS_TI_LMP91000_ENABLED
+    help
+        Enable LMP91000 AFE

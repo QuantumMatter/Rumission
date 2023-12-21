@@ -1,0 +1,29 @@
+config UART_RPC
+    bool "UART_RPC"
+    default y
+    depends on DT_HAS_RUMISSION_UART_RPC_ENABLED
+    help
+        Support for an UART device that implements the RPC
+        protocol we have defined
+
+config UART_RPC_BUFFER_LENGTH
+    int "Length of the UART ring buffers"
+    depends on UART_RPC
+    default 1024
+    help
+        This option sets the length of the UART ring buffers
+        used for sending and receiving data
+
+config UART_RPC_RX_STACK_SIZE
+    int "Size of the UART RPC RX thread stack"
+    depends on UART_RPC
+    default 4096
+    help
+        This option sets the size of the UART RPC RX thread stack
+
+config UART_RPC_RX_PRIORITY
+    int "Priority of the UART RPC RX thread"
+    depends on UART_RPC
+    default 8
+    help
+        This option sets the priority of the UART RPC RX thread

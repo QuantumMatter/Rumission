@@ -1,0 +1,7 @@
+gcloud functions deploy ingest_hologram_2 ^
+  --gen2 ^
+  --runtime=python311 ^
+  --region=us-central1 ^
+  --source=. ^
+  --entry-point=ingest_hologram ^
+  --trigger-http 

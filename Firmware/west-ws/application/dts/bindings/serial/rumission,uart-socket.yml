@@ -1,0 +1,15 @@
+description: UART over unix Socket
+
+compatible: "rumission,uart-socket"
+
+include: [uart-controller.yaml]
+
+properties:
+  reg:
+    description: |
+      Specifies which port to use for the socket
+
+  irqn:
+    type: int
+    description: |
+      Specifies which interrupt to use for the socket

@@ -1,0 +1,6 @@
+menu "Drivers"
+rsource "misc/Kconfig"
+rsource "sensor/Kconfig"
+rsource "serial/Kconfig"
+rsource "rpc/Kconfig"
+endmenu

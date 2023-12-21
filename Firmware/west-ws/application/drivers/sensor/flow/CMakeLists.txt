@@ -1,0 +1,5 @@
+zephyr_library_named(rumission_flow_meter_driver)
+zephyr_library_sources(flow.c)
+
+
+add_dependencies(rumission_flow_meter_driver rumission_protos)

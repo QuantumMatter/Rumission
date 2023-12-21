@@ -1,0 +1,26 @@
+config I2C_RPC
+    bool "I2C_RPC"
+    default y
+    depends on DT_HAS_RUMISSION_I2C_RPC_ENABLED
+    help
+        Support for an I2C target that implements the RPC
+        protocol we have defined
+
+config I2C_RPC_RX_PERIOD
+    int "I2C RPC RX period (ms)"
+    default 100
+    help
+        The period at which the I2C RPC driver will poll
+        for incoming messages
+
+config I2C_RPC_RX_STACK_SIZE
+    int "I2C RPC RX stack size"
+    default 4096
+    help
+        The stack size for the I2C RPC RX thread
+
+config I2C_RPC_RX_PRIORITY
+    int "I2C RPC RX priority"
+    default 10
+    help
+        The priority for the I2C RPC RX thread

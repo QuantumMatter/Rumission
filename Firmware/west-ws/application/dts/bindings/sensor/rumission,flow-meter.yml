@@ -1,0 +1,8 @@
+description: |
+    The flow meter is a device that measures the flow rate of a gas or liquid.
+
+compatible: "rumission,flow-meter"
+
+include:
+    - base.yaml
+    - rpc.yml

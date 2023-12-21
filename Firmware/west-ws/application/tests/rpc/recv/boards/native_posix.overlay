@@ -1,0 +1,58 @@
+/ {
+	rpc: rpc {
+		status = "okay";
+		compatible = "rumission,rpc";
+		
+		bus_id = <0>;
+
+		#address-cells = < 1 >;
+		#size-cells = < 0 >;
+
+		flow: rpc_target@3 {
+			status = "okay";
+			compatible = "rumission,flow-meter";
+			reg = <3>;
+			hw = <&flow_rpc>;
+		};
+
+		pam: rpc_target@2 {
+			status = "okay";
+			compatible = "twobtech,pam";
+			reg = <2>;
+			hw = <&pam_rpc>;
+		};
+	};
+
+	parent {
+		#address-cells = < 1 >;
+		#size-cells = <0>;
+
+		flow_socket: uart_socket@1e61  {
+			compatible = "rumission,uart-socket";
+			status = "okay";
+			reg = <7777>;
+			irqn = <3>;
+
+			flow_rpc: flow_rpc {
+				compatible = "rumission,uart-rpc";
+				status = "okay";
+
+				rpc = <&rpc>;
+			};
+		};
+
+		pam_socket: uart_socket@1e62  {
+			compatible = "rumission,uart-socket";
+			status = "okay";
+			reg = <7778>;
+			irqn = <4>;
+
+			pam_rpc: pam_rpc {
+				compatible = "rumission,uart-rpc";
+				status = "okay";
+
+				rpc = <&rpc>;
+			};
+		};
+	};
+};

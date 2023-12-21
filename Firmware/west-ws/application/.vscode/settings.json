@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "flow.h": "c"
+    },
+    "cmake.configureOnOpen": false
+}

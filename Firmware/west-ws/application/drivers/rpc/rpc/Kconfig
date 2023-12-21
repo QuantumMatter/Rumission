@@ -1,0 +1,6 @@
+config RPC_DEVICE
+    bool "RPC Device"
+    default y
+    depends on DT_HAS_RUMISSION_RPC_ENABLED
+    help
+        Provides support for instantiating the RPC module in the Device Tree

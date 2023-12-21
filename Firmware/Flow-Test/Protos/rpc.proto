@@ -1,0 +1,60 @@
+syntax = 'proto2';
+
+import "sample.proto";
+
+enum FUNCTION {
+    FUNC_NONE = 0;
+    FUNC_PING = 1;          // integer  integer
+    FUNC_GET_RECORD = 2;    // Null     Record
+    FUNC_POST_RECORD = 3;   // Record   Null
+}
+
+message InOut {
+    oneof value {
+        Error error = 1;
+        uint32 integer = 2;
+        Record record = 3;
+    }
+}
+
+message Request {
+    optional FUNCTION func = 1;
+    optional InOut args = 2;
+}
+
+message Cancel {
+
+}
+
+enum ResponseType {
+    SUCCESS = 0;
+    ERROR = 1;
+}
+
+message Response {
+    optional ResponseType type = 1;
+    optional InOut result = 2;
+}
+
+message Error {
+    optional uint32 code = 1;
+    optional string message = 2;
+}
+
+message Message {
+    required uint32 version = 1;
+
+    optional uint32 m_id = 2;
+    optional uint32 rpc_id = 3;
+
+    optional uint32 source = 4;
+    optional uint32 target = 5;
+
+    oneof data {
+        Request request = 6;
+        Cancel cancel = 7;
+        Response response = 8;
+    }
+
+    required uint32 checksum = 999;
+}

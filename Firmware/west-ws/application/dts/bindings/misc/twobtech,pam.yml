@@ -1,0 +1,8 @@
+description: |
+  The Portable Air Quality Monitor from 2B Technologies
+
+compatible: "twobtech,pam"
+
+include:
+    - base.yaml
+    - rpc.yml

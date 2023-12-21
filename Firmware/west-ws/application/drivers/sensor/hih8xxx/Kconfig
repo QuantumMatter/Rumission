@@ -1,0 +1,6 @@
+config HIH8XXX
+    bool "HIH8XXX"
+    default y
+    depends on DT_HAS_HONEYWELL_HIH8XXX_ENABLED
+    help
+        Enable Honeywell HIH8xxx Temperature and Humidity sensor

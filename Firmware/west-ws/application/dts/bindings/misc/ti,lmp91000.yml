@@ -1,0 +1,14 @@
+description: |
+    The LMP91000 is a programmable analog front-end (AFE)
+    for use in micro-power electrochemical sensing
+    applications. It provides a complete signal path solution
+    between a sensor and a microcontroller that generates an
+    output voltage proportional to the cell current
+
+compatible: "ti,lmp91000"
+
+include:
+    - base.yaml
+    - i2c-device.yaml
+
+# properties:

@@ -1,0 +1,6 @@
+config AXETRIS
+    bool "AXETRIS"
+    default y
+    depends on DT_HAS_AXETRIS_AXETRIS_ENABLED
+    help
+        Enable Axetris LGD Methane Sensor

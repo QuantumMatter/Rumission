@@ -1,0 +1,3 @@
+add_subdirectory_ifdef(CONFIG_RPC_DEVICE rpc)
+add_subdirectory_ifdef(CONFIG_I2C_RPC i2c_rpc)
+add_subdirectory_ifdef(CONFIG_UART_RPC uart_rpc)

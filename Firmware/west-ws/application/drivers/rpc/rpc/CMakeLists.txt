@@ -1,0 +1,4 @@
+zephyr_library_named(rpc_dts_driver)
+zephyr_library_sources(rpc_device.c)
+
+add_dependencies(rpc_dts_driver rumission_protos)

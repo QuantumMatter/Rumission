@@ -1,0 +1,2 @@
+add_subdirectory_ifdef(CONFIG_LMP91000 lmp91000)
+add_subdirectory_ifdef(CONFIG_PAM pam)

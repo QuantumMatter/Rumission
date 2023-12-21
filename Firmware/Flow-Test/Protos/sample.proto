@@ -1,0 +1,71 @@
+enum Species {
+    SPECIE_UNKNOWN = 0;
+    SPECIE_SAMPLE_NUMBER = 1;
+    SPECIE_TEMPERATURE = 2;
+    SPECIE_HUMIDITY = 3;
+    SPECIE_PRESSURE = 4;
+    SPECIE_O2_CONCENTRATION = 5;
+    SPECIE_H2_CONCENTRATION = 6;
+    SPECIE_METHANE_CONCENTRATION = 7;
+    SPECIE_CO2_CONCENTRATION = 8;
+    SPECIE_ACCELERATION = 9;
+    SPECIE_GYROSCOPE = 10;
+    SPECIE_COMPASS = 11;
+    SPECIE_VOLTAGE = 12;
+    SPECIE_CURRENT = 13;
+    SPECIE_POWER = 14;
+    SPECIE_LATITUDE = 15;
+    SPECIE_LONGITUDE = 16;
+}
+
+enum Units {
+    UNIT_UNKNOWN = 0;
+    UNIT_UNITLESS = 1;
+    UNIT_FAHRENHEIT = 2;
+    UNIT_CELSIUS = 3;
+    UNIT_PPB = 4;
+    UNIT_PPM = 5;
+    UNIT_PERCENT = 6;
+    UNIT_MBAR = 7;
+    UNIT_PASCAL = 8;
+    UNIT_MILLI_G = 9;
+    UNIT_DEG_PER_SEC = 10;
+    UNIT_MILLI_T = 11;
+    UNIT_VOLTS = 12;
+    UNIT_AMPS = 13;
+    UNIT_WATTS = 14;
+}
+
+enum LocationType {
+    LOCATION_UNKNOWN = 0;
+    LOCATION_BACKPACK = 1;
+    LOCATION_MAIN = 2;
+    LOCATION_FLOW_METER = 3;
+    LOCATION_PAM = 4;
+}
+
+message Location {
+    optional LocationType type = 1;
+    optional string name = 2;
+}
+
+message Value_Float {
+    optional float value = 1;
+}
+
+message Sample {
+    optional Species species = 1;
+    optional Units units = 2;
+
+    optional float value = 3;
+
+//    required uint32 location_count = 4;
+    repeated Location location = 5;
+}
+
+message Record {
+    optional uint64 timestamp_us = 1;
+
+//    required uint32 sample_count = 2;
+    repeated Sample samples = 3;
+}

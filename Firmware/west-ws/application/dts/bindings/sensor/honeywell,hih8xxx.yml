@@ -1,0 +1,10 @@
+description: |
+  Temperature and humidity sensor
+
+compatible: "honeywell,hih8xxx"
+
+include:
+  - base.yaml
+  - sensor-device.yaml
+  - i2c-device.yaml
+

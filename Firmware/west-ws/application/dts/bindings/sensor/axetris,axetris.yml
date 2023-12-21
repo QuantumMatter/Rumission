@@ -1,0 +1,15 @@
+description: |
+  The Axetris is a Methane sensor
+
+compatible: "axetris,axetris"
+
+include:
+  - sensor-device.yaml
+  - uart-device.yaml
+
+properties:
+  input-gpios:
+    type: phandle-array
+    required: true
+    description: |
+      Indicators if the RS232 translator says the bus is ok

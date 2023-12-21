@@ -1,0 +1,7 @@
+/ {
+	uart_socket: uart_socket {
+		compatible = "rumission,uart-socket";
+		status = "okay";
+		port = <7778>;
+	};
+};
